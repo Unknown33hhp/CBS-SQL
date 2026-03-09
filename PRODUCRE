@@ -1,0 +1,19 @@
+SET SERVEROUTPUTON;
+DECLARE
+  a NUMBER;
+  b NUMBER;
+  c NUMBER;
+PROCEDUREfindMin(x IN NUMBER, y IN NUMBER,z OUTNUMBER)IS
+BEGIN
+ IF x < yTHEN
+  z := x;
+ ELSE
+  z := y;
+ ENDIF;
+END;
+BEGIN
+ a := 23;
+ b := 45;
+ findMin(a, b, c);
+ DBMS_OUTPUT.PUT_LINE('Minimum of (23, 45): ' | c);
+END;
