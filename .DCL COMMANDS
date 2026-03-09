@@ -1,0 +1,5 @@
+Create user customer identified by oracle;
+Grant connect to customer;
+Grant all privileges to customer;
+Grant select on customer to ex2;
+Revoke select on customer from ex2;
