@@ -1,0 +1,20 @@
+------------------ Create the table----------------
+CREATETABLE geeks (g_id NUMBER,g_name VARCHAR2(50));
+--------------- Insert some data into the table--------------
+INSERT INTO geeks (g_id, g_name) VALUES (1, 'GeeksforGeeks');
+INSERT INTO geeks (g_id, g_name) VALUES (2, 'Stack Overflow');
+----------------- Commit the transaction---------------
+COMMIT;
+---------------- Enable server output-------------------
+SET SERVEROUTPUTON;-- PL/SQL block to select data from the table
+DECLARE
+  temp VARCHAR2(20);
+BEGIN
+  SELECT g_id INTO temp FROM geeks WHERE g_name ='GeeksforGeeks';
+EXCEPTION
+  WHENNO_DATA_FOUNDTHEN
+   DBMS_OUTPUT.PUT_LINE('ERROR');
+   DBMS_OUTPUT.PUT_LINE('There is no name as');
+   DBMS_OUTPUT.PUT_LINE('GeeksforGeeks in geeks table');
+END;
+/
