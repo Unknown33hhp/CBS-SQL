@@ -1,0 +1,31 @@
+CREATE TABLE STUDENT(RNONUMBER(10),NAME CHAR(20),AGE NUMBER(2),CITY CHAR(10),MARKS NUMBER(3));
+INSERT INTO STUDENT VALUES(1, 'Sasha',17,'Faridabad',80);
+INSERT INTO STUDENT VALUES(2,'John',18,'Agra',91);
+INSERT INTO STUDENT VALUES(3,'Sara',17,'Hisar',86);
+INSERT INTO STUDENT VALUES(4,'Rohan',16,'Faridabad',79);
+INSERT INTO STUDENT VALUES(5,'Virat',18,'Delhi',80);
+------------ Start the transaction--------------
+SET AUTOCOMMITOFF;
+------------ Inserting data into the STUDENT table
+INSERT INTO STUDENT VALUES(6,'Komal',20,'Faridabad',97);
+------------ Creating savepoint 1---------------------
+SAVEPOINT save1;
+------------ Displaying changes after savepoint1---------------
+SELECT * FROMSTUDENT;
+-------------- Inserting more data into the STUDENT table---------------
+INSERT INTO STUDENT VALUES(7,'Preeti',19,'UP',91);
+------------- Creating savepoint 2--------------------------
+SAVEPOINT save2;
+--------------- Displaying changes after savepoint2
+SELECT * FROMSTUDENT;
+-------------- Updating marks for a student-----------------------
+UPDATESTUDENTSETMARKS=95WHERENAME='Komal';
+----------------- Creating savepoint 3----------------------
+SAVEPOINT save3;
+------------------ Displaying changes after savepoint3-------------------
+SELECT * FROMSTUDENT;
+-------------- Committing the transaction-----------------------------
+COMMIT;-- Displaying the final changes
+SELECT * FROMSTUDENT;
+---------------- Disconnect from the database-------------------------------
+DISCONNECT;
