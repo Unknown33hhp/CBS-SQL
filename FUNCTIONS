@@ -1,0 +1,22 @@
+CREATE TABLE Ex3(item_id INTEGER,item_name VARCHAR(30),checkin_date DATE,item_price NUMBER(10,3),branch_name VARCHAR(200),consumer_name VARCHAR(20),place VARCHAR(20));
+INSERT INTO Ex3 VALUES(12101,'MacBook',TO_DATE('2023-07-28','YYYY-MM-DD'),350000.00,'Apple Store','RAJA','London');
+INSERT INTO Ex3VALUES(12101,'Watch',TO_DATE('2024-02-20','YYYY-MM-DD'),4000.00,'Titan','Vijay','London');
+INSERT INTO Ex3 VALUES(12101,'Book',TO_DATE('2024-03-11','YYYY-MM-DD'),500.00,'TamilStore','Ajith','India');
+INSERT INTO Ex3 VALUES(12101,'Gold Chain',TO_DATE('2024-01-20','YYYY-MM-DD'),55000.00,'Joyalukkas','Leo','Kasmir');
+INSERT INTO Ex3 VALUES(12101,'Diamond Ring',TO_DATE('2024-01-31','YYYY-MM-DD'),5500000.00,'Peter Store','Gwen','New York');
+SELECT *FROMEx3;
+/*string*/
+select upper(item_name) from Ex3;
+select initcap(item_name) from Ex3 ;
+select trim (both 'e' from item_name) from Ex3 ;
+/*date*/
+select add_months(TO_DATE('2024-02-20','YYYY-MM-DD'), 3)from dual;
+select last_day (TO_DATE('2024-03-11','YYYY-MM-DD')) from dual;
+/*number*/
+select max(item_price), min(item_price),round( avg(item_price),1), sum(item_price) from Ex3 ;
+select min(item_name) , max(item_name) from Ex3 ;
+select count(place) from Ex3 ;
+/*conversion*/
+select to_char(sysdate, 'dd ' )from dual;
+select to_char(sysdate, 'ddth' )from dual;
+select to_char(sysdate, 'ddspth ' )from dual;
