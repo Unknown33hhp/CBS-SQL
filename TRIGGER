@@ -1,0 +1,19 @@
+CREATE TABLE employee_salary(EMP_ID number(10),SALARYnumber(10),EMP_NAMEvarchar2(50));
+CREATE TABLE employee_salary_log(EMP_ID number(10),NEW_SALARYnumber(10),UPDATED_DATE date,UPDATED_BY varchar2(20));
+CREATE OR REPLACE TRIGGER trg_log_employee_salary
+AFTER UPDATE OFSALARY ONe mployee_salary
+FOR EACH ROW
+DECLARE
+ username varchar2(20);
+BEGIN
+  SELECT USER INTO username FROM dual;
+  INSERT INTO employee_salary_log VALUES (:NEW.EMP_ID, :NEW.SALARY, sysdate, username);
+END;
+/
+INSERT INTO employee_salary VALUES (201, 40000, 'Vikram');
+INSERT INTO employee_salary VALUES (301, 35000, 'Nikhil');
+----------- Corrected update statement with salary value as number instead of string------------
+UPDATEemployee_salary SET SALARY = 28000 WHERE emp_id = 101;
+--------------- Commit the changes---------------------
+COMMIT;
+:
